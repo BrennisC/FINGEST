@@ -46,11 +46,14 @@ export default function Header() {
 
           {/* Right side buttons */}
           <div className="flex items-center gap-4">
-            <button className="text-foreground hover:text-slate-600 text-sm font-medium transition">
-              Iniciar sesión
-            </button>
             <Link
-              to="/dashboard"
+              to="/login"
+              className="text-foreground hover:text-slate-600 text-sm font-medium transition"
+            >
+              Iniciar sesión
+            </Link>
+            <Link
+              to="/register"
               className="bg-slate-600 text-white px-6 py-2 text-sm font-medium hover:bg-blue-900 transition rounded-sm"
             >
               Comenzar gratis
