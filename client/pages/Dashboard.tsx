@@ -1,0 +1,268 @@
+import { Link } from "react-router-dom";
+import Icon from "@mui/material/Icon";
+import { User } from "lucide-react";
+export default function Dashboard() {
+  return (
+    <div className="min-h-screen bg-gray-50">
+      <div className="flex">
+        <aside className="w-64 bg-white border-r border-gray-200 min-h-screen p-6">
+          <Link
+            to="/"
+            className="flex items-center gap-2 font-bold text-xl text-foreground mb-8"
+          >
+            <div className="w-8 h-8 bg-slate-600 rounded-sm flex items-center justify-center text-white text-sm">
+              💚
+            </div>
+            <span>FinGest</span>
+          </Link>
+
+          <nav className="space-y-1">
+            <div>
+              <h3 className="text-xs font-bold text-gray-600 uppercase tracking-wide mb-3 px-3">
+                Visión General
+              </h3>
+              <ul className="space-y-1">
+                <li>
+                  <Link
+                    to="/dashboard"
+                    className="block px-3 py-2 rounded-sm text-sm font-medium text-white bg-slate-600"
+                  >
+                    📊Panel Principal
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/transactions"
+                    className="block px-3 py-2 rounded-sm text-sm font-medium text-foreground hover:bg-gray-100"
+                  >
+                    🔄 Transacciones
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/subcuentas"
+                    className="block px-3 py-2 rounded-sm text-sm font-medium text-foreground hover:bg-gray-100"
+                  >
+                    💰 Subcuentas
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/alerts"
+                    className="block px-3 py-2 rounded-sm text-sm font-medium text-foreground hover:bg-gray-100"
+                  >
+                    🔔 Alertas
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            <div className="mt-8">
+              <h3 className="text-xs font-bold text-gray-600 uppercase tracking-wide mb-3 px-3">
+                Aprendizaje
+              </h3>
+              <ul className="space-y-1">
+                <li>
+                  <Link
+                    to="/courses"
+                    className="block px-3 py-2 rounded-sm text-sm font-medium text-foreground hover:bg-gray-100"
+                  >
+                    📚 Cursos
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/financial-advice"
+                    className="block px-3 py-2 rounded-sm text-sm font-medium text-foreground hover:bg-gray-100"
+                  >
+                    💡 Consejos Financieros
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            <div className="mt-8">
+              <h3 className="text-xs font-bold text-gray-600 uppercase tracking-wide mb-3 px-3">
+                Cuenta
+              </h3>
+              <ul className="space-y-1">
+                <li>
+                  <Link
+                    to="/profile"
+                    className="block px-3 py-2 rounded-sm text-sm font-medium text-foreground hover:bg-gray-100"
+                  >
+                    <Icon name="user" /> Perfil
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </aside>
+
+        {/* Main Content */}
+        <main className="flex-1 p-6">
+          <div className="max-w-7xl">
+            <h1 className="text-2xl font-bold text-foreground mb-1">
+              Dashboard
+            </h1>
+            <p className="text-gray-600 mb-8">
+              Descripción general de tu situación financiera
+            </p>
+
+            {/* Tabs */}
+            <div className="flex gap-8 mb-6 border-b border-gray-200">
+              <button className="px-4 py-2 text-sm font-medium text-slate-600 border-b-2 border-slate-600">
+                Overview
+              </button>
+              <button className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-foreground">
+                Analytics
+              </button>
+              <button className="px-4 py-2 text-sm font-medium text-gray-600 hover:text-foreground">
+                Savings Goals
+              </button>
+            </div>
+
+            {/* Stats Cards */}
+            <div className="grid grid-cols-4 gap-4 mb-6">
+              <div className="bg-white border border-gray-200 p-5">
+                <p className="text-xs text-gray-600 mb-2">Total Balance</p>
+                <p className="text-xl font-bold text-foreground">$1490.00</p>
+                <p className="text-xs text-gray-600 mt-2">
+                  +$25 from last month
+                </p>
+              </div>
+              <div className="bg-white border border-gray-200 p-5">
+                <p className="text-xs text-gray-600 mb-2">Total Income</p>
+                <p className="text-xl font-bold text-slate-600">$2700.00</p>
+                <p className="text-xs text-gray-600 mt-2">From 1 sources</p>
+              </div>
+              <div className="bg-white border border-gray-200 p-5">
+                <p className="text-xs text-gray-600 mb-2">Total Expenses</p>
+                <p className="text-xl font-bold text-red-600">$1210.00</p>
+                <p className="text-xs text-gray-600 mt-2">44.8% of income</p>
+              </div>
+              <div className="bg-white border border-gray-200 p-5">
+                <p className="text-xs text-gray-600 mb-2">Savings Progress</p>
+                <p className="text-xl font-bold" style={{ color: "#1d2636" }}>
+                  45.8%
+                </p>
+                <p className="text-xs text-gray-600 mt-2">
+                  Toward your savings goals
+                </p>
+              </div>
+            </div>
+
+            {/* Charts Section */}
+            <div className="grid grid-cols-2 gap-6">
+              <div className="bg-white border border-gray-200 p-6">
+                <h2 className="text-sm font-bold text-foreground mb-4">
+                  Recent Transactions
+                </h2>
+                <p className="text-xs text-gray-600 mb-4">
+                  Your latest financial activities
+                </p>
+                <div className="space-y-3">
+                  <div className="flex items-center gap-3 pb-3 border-b border-gray-200">
+                    <div className="w-9 h-9 bg-slate-600 flex items-center justify-center text-white text-xs font-bold rounded-sm flex-shrink-0">
+                      🌐
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium text-foreground">
+                        Internet Bill
+                      </p>
+                      <p className="text-xs text-gray-600">
+                        Jul 21, 2023 - Utilities
+                      </p>
+                    </div>
+                    <p className="text-sm font-bold text-red-600 flex-shrink-0">
+                      -$150.00
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-3 pb-3 border-b border-gray-200">
+                    <div className="w-9 h-9 bg-gray-300 flex items-center justify-center text-sm font-bold rounded-sm flex-shrink-0">
+                      🎬
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium text-foreground">
+                        Movie Night
+                      </p>
+                      <p className="text-xs text-gray-600">
+                        Jul 19, 2023 - Entertainment
+                      </p>
+                    </div>
+                    <p className="text-sm font-bold text-red-600 flex-shrink-0">
+                      -$33.00
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 bg-gray-400 flex items-center justify-center text-sm font-bold rounded-sm flex-shrink-0">
+                      🍽️
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-medium text-foreground">
+                        Restaurant Dinner
+                      </p>
+                      <p className="text-xs text-gray-600">
+                        Jul 17, 2023 - Food & Dining
+                      </p>
+                    </div>
+                    <p className="text-sm font-bold text-red-600 flex-shrink-0">
+                      -$68.00
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-white border border-gray-200 p-6">
+                <h2 className="text-sm font-bold text-foreground mb-4">
+                  Alerts & Reminders
+                </h2>
+                <p className="text-xs text-gray-600 mb-4">
+                  Important notifications about your finances
+                </p>
+                <div className="space-y-3">
+                  <div className="flex gap-3 p-3 bg-yellow-50 border border-yellow-200">
+                    <span className="text-lg flex-shrink-0">⚠️</span>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs font-medium text-foreground">
+                        Your balance is below $500
+                      </p>
+                      <p className="text-xs text-gray-600">Jul 22, 2023</p>
+                    </div>
+                    <button className="text-gray-400 hover:text-gray-600 flex-shrink-0 font-bold">
+                      ×
+                    </button>
+                  </div>
+                  <div className="flex gap-3 p-3 bg-green-50 border border-green-200">
+                    <span className="text-lg flex-shrink-0">✅</span>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs font-medium text-foreground">
+                        You've reached 60% of your Emergency Fund goal
+                      </p>
+                      <p className="text-xs text-gray-600">Jul 21, 2023</p>
+                    </div>
+                    <button className="text-gray-400 hover:text-gray-600 flex-shrink-0 font-bold">
+                      ×
+                    </button>
+                  </div>
+                  <div className="flex gap-3 p-3 bg-blue-50 border border-blue-200">
+                    <span className="text-lg flex-shrink-0">💡</span>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs font-medium text-foreground">
+                        Electricity bill due in 3 days
+                      </p>
+                      <p className="text-xs text-gray-600">Jul 20, 2023</p>
+                    </div>
+                    <button className="text-gray-400 hover:text-gray-600 flex-shrink-0 font-bold">
+                      ×
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  );
+}
