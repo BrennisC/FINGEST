@@ -12,8 +12,12 @@ export default function Subcuentas() {
             <div className="max-w-7xl mx-auto">
               <div className="flex items-center justify-between mb-6">
                 <div>
-                  <h1 className="text-2xl font-bold text-foreground mb-1">Subcuentas</h1>
-                  <p className="text-sm text-gray-600">Organiza tu dinero en diferentes subcuentas</p>
+                  <h1 className="text-2xl font-bold text-foreground mb-1">
+                    Subcuentas
+                  </h1>
+                  <p className="text-sm text-gray-600">
+                    Organiza tu dinero en diferentes subcuentas
+                  </p>
                 </div>
                 <button className="bg-slate-600 text-white px-4 py-2 text-sm font-medium hover:bg-blue-900 transition rounded-sm">
                   + Nueva Subcuenta
@@ -49,30 +53,78 @@ export default function Subcuentas() {
                 <table className="w-full">
                   <thead className="border-b border-gray-200 bg-gray-50">
                     <tr>
-                      <th className="text-left px-6 py-3 text-xs font-bold text-foreground">Nombre</th>
-                      <th className="text-left px-6 py-3 text-xs font-bold text-foreground">Descripción</th>
-                      <th className="text-right px-6 py-3 text-xs font-bold text-foreground">Balance</th>
-                      <th className="text-left px-6 py-3 text-xs font-bold text-foreground">Creada</th>
-                      <th className="text-center px-6 py-3 text-xs font-bold text-foreground">Acciones</th>
+                      <th className="text-left px-6 py-3 text-xs font-bold text-foreground">
+                        Nombre
+                      </th>
+                      <th className="text-left px-6 py-3 text-xs font-bold text-foreground">
+                        Descripción
+                      </th>
+                      <th className="text-right px-6 py-3 text-xs font-bold text-foreground">
+                        Balance
+                      </th>
+                      <th className="text-left px-6 py-3 text-xs font-bold text-foreground">
+                        Creada
+                      </th>
+                      <th className="text-center px-6 py-3 text-xs font-bold text-foreground">
+                        Acciones
+                      </th>
                     </tr>
                   </thead>
                   <tbody>
                     {[
-                      { name: "Prueba Subcuenta", desc: "Subcuenta de prueba", amount: 100, date: "07/07/2025" },
-                      { name: "Cine", desc: "entd", amount: 122, date: "07/07/2025" },
-                      { name: "NICK", desc: "Para la comida", amount: 100, date: "07/07/2025" },
-                      { name: "Tu otra cta", desc: "sss", amount: -68, date: "07/07/2025" },
-                      { name: "josue", desc: "sin cta", amount: -700, date: "02/07/2025" },
+                      {
+                        name: "Prueba Subcuenta",
+                        desc: "Subcuenta de prueba",
+                        amount: 100,
+                        date: "07/07/2025",
+                      },
+                      {
+                        name: "Cine",
+                        desc: "entd",
+                        amount: 122,
+                        date: "07/07/2025",
+                      },
+                      {
+                        name: "NICK",
+                        desc: "Para la comida",
+                        amount: 100,
+                        date: "07/07/2025",
+                      },
+                      {
+                        name: "Tu otra cta",
+                        desc: "sss",
+                        amount: -68,
+                        date: "07/07/2025",
+                      },
+                      {
+                        name: "josue",
+                        desc: "sin cta",
+                        amount: -700,
+                        date: "02/07/2025",
+                      },
                     ].map((subcuenta, idx) => (
-                      <tr key={idx} className="border-b border-gray-200 hover:bg-gray-50">
-                        <td className="px-6 py-4 text-sm font-medium text-foreground">{subcuenta.name}</td>
-                        <td className="px-6 py-4 text-sm text-gray-600">{subcuenta.desc}</td>
-                        <td className={`px-6 py-4 text-sm font-bold text-right ${subcuenta.amount < 0 ? "text-red-600" : "text-foreground"}`}>
+                      <tr
+                        key={idx}
+                        className="border-b border-gray-200 hover:bg-gray-50"
+                      >
+                        <td className="px-6 py-4 text-sm font-medium text-foreground">
+                          {subcuenta.name}
+                        </td>
+                        <td className="px-6 py-4 text-sm text-gray-600">
+                          {subcuenta.desc}
+                        </td>
+                        <td
+                          className={`px-6 py-4 text-sm font-bold text-right ${subcuenta.amount < 0 ? "text-red-600" : "text-foreground"}`}
+                        >
                           ${subcuenta.amount.toFixed(2)}
                         </td>
-                        <td className="px-6 py-4 text-sm text-gray-600">{subcuenta.date}</td>
+                        <td className="px-6 py-4 text-sm text-gray-600">
+                          {subcuenta.date}
+                        </td>
                         <td className="px-6 py-4 text-center">
-                          <button className="text-gray-600 hover:text-foreground font-bold">⋮</button>
+                          <button className="text-gray-600 hover:text-foreground font-bold">
+                            ⋮
+                          </button>
                         </td>
                       </tr>
                     ))}

@@ -16,14 +16,20 @@ export default function Placeholder() {
           <div className="max-w-6xl mx-auto">
             <div className="bg-white rounded-lg border border-border p-12 text-center">
               <div className="text-6xl mb-6">🚀</div>
-              <h1 className="text-3xl font-bold text-foreground mb-4">Coming Soon</h1>
+              <h1 className="text-3xl font-bold text-foreground mb-4">
+                Coming Soon
+              </h1>
               <p className="text-muted-foreground mb-4">
                 This page is on the roadmap! {pageName} will be available soon.
               </p>
               <p className="text-sm text-muted-foreground mb-8">
-                Feel free to reach out to our team if you have any feature requests.
+                Feel free to reach out to our team if you have any feature
+                requests.
               </p>
-              <Link to="/dashboard" className="inline-block bg-primary text-white px-6 py-2 rounded-lg font-medium hover:bg-primary/90 transition">
+              <Link
+                to="/dashboard"
+                className="inline-block bg-primary text-white px-6 py-2 rounded-lg font-medium hover:bg-primary/90 transition"
+              >
                 Back to Dashboard
               </Link>
             </div>

@@ -10,7 +10,7 @@ export default function Login() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!email || !password) {
       setError("Por favor completa todos los campos");
       return;
@@ -26,10 +26,7 @@ export default function Login() {
       <div className="w-full max-w-md">
         {/* Logo Section */}
         <div className="text-center mb-8">
-          <Link
-            to="/"
-            className="flex items-center justify-center gap-2 mb-4"
-          >
+          <Link to="/" className="flex items-center justify-center gap-2 mb-4">
             <div className="w-12 h-12 bg-slate-600 rounded-sm flex items-center justify-center text-white text-lg">
               💚
             </div>
@@ -48,11 +45,17 @@ export default function Login() {
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* Email Field */}
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-foreground mb-2"
+              >
                 Correo Electrónico
               </label>
               <div className="relative">
-                <Mail className="absolute left-3 top-3 text-gray-400" size={20} />
+                <Mail
+                  className="absolute left-3 top-3 text-gray-400"
+                  size={20}
+                />
                 <input
                   id="email"
                   type="email"
@@ -66,11 +69,17 @@ export default function Login() {
 
             {/* Password Field */}
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-foreground mb-2">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-foreground mb-2"
+              >
                 Contraseña
               </label>
               <div className="relative">
-                <Lock className="absolute left-3 top-3 text-gray-400" size={20} />
+                <Lock
+                  className="absolute left-3 top-3 text-gray-400"
+                  size={20}
+                />
                 <input
                   id="password"
                   type="password"
@@ -110,7 +119,10 @@ export default function Login() {
         <div className="text-center">
           <p className="text-gray-600 text-sm">
             ¿No tienes cuenta?{" "}
-            <Link to="/register" className="text-slate-600 font-medium hover:text-blue-900">
+            <Link
+              to="/register"
+              className="text-slate-600 font-medium hover:text-blue-900"
+            >
               Regístrate aquí
             </Link>
           </p>

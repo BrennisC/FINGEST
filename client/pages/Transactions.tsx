@@ -11,8 +11,12 @@ export default function Transactions() {
           <div className="max-w-7xl">
             <div className="flex items-center justify-between mb-6">
               <div>
-                <h1 className="text-2xl font-bold text-foreground mb-1">Transacciones</h1>
-                <p className="text-gray-600 text-sm">Administre y rastree sus ingresos y gastos</p>
+                <h1 className="text-2xl font-bold text-foreground mb-1">
+                  Transacciones
+                </h1>
+                <p className="text-gray-600 text-sm">
+                  Administre y rastree sus ingresos y gastos
+                </p>
               </div>
               <button className="bg-slate-600 text-white px-4 py-2 text-sm font-medium hover:bg-blue-900 transition rounded-sm">
                 + Añadir Transacción
@@ -21,7 +25,9 @@ export default function Transactions() {
 
             {/* Filters */}
             <div className="flex gap-3 mb-6 items-center">
-              <button className="px-4 py-2 bg-slate-600 text-white text-sm font-medium rounded-sm">Todos</button>
+              <button className="px-4 py-2 bg-slate-600 text-white text-sm font-medium rounded-sm">
+                Todos
+              </button>
               <button className="px-4 py-2 bg-white text-foreground border border-gray-200 text-sm font-medium hover:border-slate-600 rounded-sm">
                 Ingresos
               </button>
@@ -47,12 +53,42 @@ export default function Transactions() {
               <table className="w-full">
                 <tbody className="divide-y divide-gray-200">
                   {[
-                    { name: "proyecto", date: "2 Jul, 2025", amount: "-$120.00", icon: "📉" },
-                    { name: "sueldo", date: "2 Jul, 2025", amount: "+$1000.00", icon: "💰" },
-                    { name: "polillo", date: "2 Jul, 2025", amount: "-$80.00", icon: "📉" },
-                    { name: "la al cine", date: "1 Jul, 2025", amount: "+$150.00", icon: "🎬" },
-                    { name: "Cine", date: "1 Jul, 2025", amount: "+$500.00", icon: "🎭" },
-                    { name: "corner polillo", date: "2 Jul, 2025", amount: "-$45.00", icon: "📉" },
+                    {
+                      name: "proyecto",
+                      date: "2 Jul, 2025",
+                      amount: "-$120.00",
+                      icon: "📉",
+                    },
+                    {
+                      name: "sueldo",
+                      date: "2 Jul, 2025",
+                      amount: "+$1000.00",
+                      icon: "💰",
+                    },
+                    {
+                      name: "polillo",
+                      date: "2 Jul, 2025",
+                      amount: "-$80.00",
+                      icon: "📉",
+                    },
+                    {
+                      name: "la al cine",
+                      date: "1 Jul, 2025",
+                      amount: "+$150.00",
+                      icon: "🎬",
+                    },
+                    {
+                      name: "Cine",
+                      date: "1 Jul, 2025",
+                      amount: "+$500.00",
+                      icon: "🎭",
+                    },
+                    {
+                      name: "corner polillo",
+                      date: "2 Jul, 2025",
+                      amount: "-$45.00",
+                      icon: "📉",
+                    },
                   ].map((transaction, idx) => (
                     <tr key={idx} className="hover:bg-gray-50">
                       <td className="px-6 py-4">
@@ -61,18 +97,26 @@ export default function Transactions() {
                             {transaction.icon}
                           </div>
                           <div className="min-w-0">
-                            <p className="text-sm font-medium text-foreground">{transaction.name}</p>
-                            <p className="text-xs text-gray-600">{transaction.date}</p>
+                            <p className="text-sm font-medium text-foreground">
+                              {transaction.name}
+                            </p>
+                            <p className="text-xs text-gray-600">
+                              {transaction.date}
+                            </p>
                           </div>
                         </div>
                       </td>
                       <td className="px-6 py-4 text-right">
-                        <p className={`text-sm font-bold ${transaction.amount.startsWith("+") ? "text-green-600" : "text-red-600"}`}>
+                        <p
+                          className={`text-sm font-bold ${transaction.amount.startsWith("+") ? "text-green-600" : "text-red-600"}`}
+                        >
                           {transaction.amount}
                         </p>
                       </td>
                       <td className="px-6 py-4 text-center">
-                        <button className="text-gray-600 hover:text-foreground font-bold">⋮</button>
+                        <button className="text-gray-600 hover:text-foreground font-bold">
+                          ⋮
+                        </button>
                       </td>
                     </tr>
                   ))}

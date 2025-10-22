@@ -19,10 +19,8 @@ export default function Sidebar() {
   const getLinkClassName = (path: string) => {
     const baseClass =
       "block px-3 py-2 rounded-sm text-sm font-medium flex items-center gap-2 transition";
-    const activeClass =
-      "text-white bg-slate-600";
-    const inactiveClass =
-      "text-foreground hover:bg-gray-100";
+    const activeClass = "text-white bg-slate-600";
+    const inactiveClass = "text-foreground hover:bg-gray-100";
     return `${baseClass} ${isActive(path) ? activeClass : inactiveClass}`;
   };
 
@@ -54,13 +52,19 @@ export default function Sidebar() {
               </Link>
             </li>
             <li>
-              <Link to="/transactions" className={getLinkClassName("/transactions")}>
+              <Link
+                to="/transactions"
+                className={getLinkClassName("/transactions")}
+              >
                 <ArrowRightLeft size={18} />
                 Transacciones
               </Link>
             </li>
             <li>
-              <Link to="/subcuentas" className={getLinkClassName("/subcuentas")}>
+              <Link
+                to="/subcuentas"
+                className={getLinkClassName("/subcuentas")}
+              >
                 <Wallet size={18} />
                 Subcuentas
               </Link>
@@ -87,7 +91,10 @@ export default function Sidebar() {
               </Link>
             </li>
             <li>
-              <Link to="/financial-advice" className={getLinkClassName("/financial-advice")}>
+              <Link
+                to="/financial-advice"
+                className={getLinkClassName("/financial-advice")}
+              >
                 <Lightbulb size={18} />
                 Consejos Financieros
               </Link>

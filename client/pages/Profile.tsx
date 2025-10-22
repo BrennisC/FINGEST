@@ -15,8 +15,12 @@ export default function Profile() {
                   👨
                 </div>
                 <div className="flex-1">
-                  <h1 className="text-2xl font-bold text-foreground mb-2">Mi Perfil</h1>
-                  <p className="text-gray-600">Gestiona tu información personal y preferencias de cuenta</p>
+                  <h1 className="text-2xl font-bold text-foreground mb-2">
+                    Mi Perfil
+                  </h1>
+                  <p className="text-gray-600">
+                    Gestiona tu información personal y preferencias de cuenta
+                  </p>
                 </div>
               </div>
             </div>
@@ -41,10 +45,14 @@ export default function Profile() {
               <div className="grid grid-cols-2 gap-8">
                 {/* Left Column */}
                 <div>
-                  <h2 className="text-sm font-bold text-foreground mb-6">Información de Usuario</h2>
+                  <h2 className="text-sm font-bold text-foreground mb-6">
+                    Información de Usuario
+                  </h2>
                   <div className="space-y-5">
                     <div>
-                      <label className="block text-sm font-medium text-foreground mb-2">Nombres completos</label>
+                      <label className="block text-sm font-medium text-foreground mb-2">
+                        Nombres completos
+                      </label>
                       <input
                         type="text"
                         value="nick evaristo"
@@ -53,7 +61,9 @@ export default function Profile() {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-foreground mb-2">Nivel de educación financiera</label>
+                      <label className="block text-sm font-medium text-foreground mb-2">
+                        Nivel de educación financiera
+                      </label>
                       <select className="w-full px-4 py-2 border border-gray-200 text-foreground bg-white focus:outline-none focus:border-slate-600 rounded-sm">
                         <option>Intermedio</option>
                         <option>Principiante</option>
@@ -71,13 +81,19 @@ export default function Profile() {
 
                 {/* Right Column */}
                 <div>
-                  <h2 className="text-sm font-bold text-foreground mb-6">Información General</h2>
-                  <p className="text-xs text-gray-600 mb-5">Actualiza tu información personal y datos de contacto</p>
+                  <h2 className="text-sm font-bold text-foreground mb-6">
+                    Información General
+                  </h2>
+                  <p className="text-xs text-gray-600 mb-5">
+                    Actualiza tu información personal y datos de contacto
+                  </p>
 
                   <div className="space-y-5">
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-sm font-medium text-foreground mb-2">Nombres</label>
+                        <label className="block text-sm font-medium text-foreground mb-2">
+                          Nombres
+                        </label>
                         <input
                           type="text"
                           value="nick"
@@ -85,7 +101,9 @@ export default function Profile() {
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-foreground mb-2">Apellidos</label>
+                        <label className="block text-sm font-medium text-foreground mb-2">
+                          Apellidos
+                        </label>
                         <input
                           type="text"
                           value="evaristo"
@@ -95,7 +113,9 @@ export default function Profile() {
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-foreground mb-2">Correo electrónico</label>
+                      <label className="block text-sm font-medium text-foreground mb-2">
+                        Correo electrónico
+                      </label>
                       <input
                         type="email"
                         value="evaristo108@gmail.com"
@@ -105,7 +125,9 @@ export default function Profile() {
 
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-sm font-medium text-foreground mb-2">Teléfono</label>
+                        <label className="block text-sm font-medium text-foreground mb-2">
+                          Teléfono
+                        </label>
                         <input
                           type="tel"
                           value="967409142"
@@ -113,7 +135,9 @@ export default function Profile() {
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-foreground mb-2">País</label>
+                        <label className="block text-sm font-medium text-foreground mb-2">
+                          País
+                        </label>
                         <input
                           type="text"
                           value="España"
