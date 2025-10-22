@@ -55,7 +55,7 @@ export default function Profile() {
                       </label>
                       <input
                         type="text"
-                        value="nick evaristo"
+                        defaultValue="nick evaristo"
                         className="w-full px-4 py-2 border border-gray-200 text-foreground bg-white focus:outline-none focus:border-slate-600 rounded-sm"
                       />
                     </div>
@@ -64,7 +64,7 @@ export default function Profile() {
                       <label className="block text-sm font-medium text-foreground mb-2">
                         Nivel de educación financiera
                       </label>
-                      <select className="w-full px-4 py-2 border border-gray-200 text-foreground bg-white focus:outline-none focus:border-slate-600 rounded-sm">
+                      <select defaultValue="Intermedio" className="w-full px-4 py-2 border border-gray-200 text-foreground bg-white focus:outline-none focus:border-slate-600 rounded-sm">
                         <option>Intermedio</option>
                         <option>Principiante</option>
                         <option>Avanzado</option>
@@ -96,7 +96,7 @@ export default function Profile() {
                         </label>
                         <input
                           type="text"
-                          value="nick"
+                          defaultValue="nick"
                           className="w-full px-4 py-2 border border-gray-200 text-foreground bg-white rounded-sm"
                         />
                       </div>
@@ -106,7 +106,7 @@ export default function Profile() {
                         </label>
                         <input
                           type="text"
-                          value="evaristo"
+                          defaultValue="evaristo"
                           className="w-full px-4 py-2 border border-gray-200 text-foreground bg-white rounded-sm"
                         />
                       </div>
@@ -118,7 +118,7 @@ export default function Profile() {
                       </label>
                       <input
                         type="email"
-                        value="evaristo108@gmail.com"
+                        defaultValue="evaristo108@gmail.com"
                         className="w-full px-4 py-2 border border-gray-200 text-foreground bg-white focus:outline-none focus:border-slate-600 rounded-sm"
                       />
                     </div>
@@ -130,7 +130,7 @@ export default function Profile() {
                         </label>
                         <input
                           type="tel"
-                          value="967409142"
+                          defaultValue="967409142"
                           className="w-full px-4 py-2 border border-gray-200 text-foreground bg-white rounded-sm"
                         />
                       </div>
@@ -140,7 +140,7 @@ export default function Profile() {
                         </label>
                         <input
                           type="text"
-                          value="España"
+                          defaultValue="España"
                           className="w-full px-4 py-2 border border-gray-200 text-foreground bg-white rounded-sm"
                         />
                       </div>
