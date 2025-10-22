@@ -1,4 +1,4 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   BarChart3,
   ArrowRightLeft,
@@ -12,6 +12,7 @@ import {
 
 export default function Sidebar() {
   const location = useLocation();
+  const navigate = useNavigate();
   const currentPath = location.pathname;
 
   const isActive = (path: string) => currentPath === path;
@@ -121,8 +122,7 @@ export default function Sidebar() {
       {/* Logout Button */}
       <button
         onClick={() => {
-          // TODO: Implement logout functionality
-          alert("Logout functionality to be implemented");
+          navigate("/");
         }}
         className="w-full px-3 py-2 rounded-sm text-sm font-medium text-foreground hover:bg-gray-100 flex items-center gap-2 transition mt-auto pt-8 border-t border-gray-200"
       >
