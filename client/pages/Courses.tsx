@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import Sidebar from "@/components/Sidebar";
 
 export default function Courses() {
   const courses = [
@@ -49,97 +50,20 @@ export default function Courses() {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="flex">
-        {/* Sidebar */}
-        <aside className="w-64 bg-white border-r border-gray-200 min-h-screen p-6">
-          <Link to="/" className="flex items-center gap-2 font-bold text-xl text-foreground mb-8">
-            <div className="w-8 h-8 bg-slate-600 rounded-sm flex items-center justify-center text-white text-sm">
-              💚
-            </div>
-            <span>FinGest</span>
-          </Link>
-
-          <nav className="space-y-1">
-            <div>
-              <h3 className="text-xs font-bold text-gray-600 uppercase tracking-wide mb-3 px-3">
-                Visión General
-              </h3>
-              <ul className="space-y-1">
-                <li>
-                  <Link
-                    to="/dashboard"
-                    className="block px-3 py-2 text-sm font-medium text-foreground hover:bg-gray-100 rounded-sm"
-                  >
-                    📊 Panel Principal
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/transactions"
-                    className="block px-3 py-2 text-sm font-medium text-foreground hover:bg-gray-100 rounded-sm"
-                  >
-                    🔄 Transacciones
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/subcuentas"
-                    className="block px-3 py-2 text-sm font-medium text-foreground hover:bg-gray-100 rounded-sm"
-                  >
-                    💰 Subcuentas
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            <div className="mt-8">
-              <h3 className="text-xs font-bold text-gray-600 uppercase tracking-wide mb-3 px-3">
-                Aprendizaje
-              </h3>
-              <ul className="space-y-1">
-                <li>
-                  <Link
-                    to="/courses"
-                    className="block px-3 py-2 text-sm font-medium text-white bg-slate-600 rounded-sm"
-                  >
-                    📚 Cursos
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/financial-advice"
-                    className="block px-3 py-2 text-sm font-medium text-foreground hover:bg-gray-100 rounded-sm"
-                  >
-                    💡 Consejos Financieros
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            <div className="mt-8">
-              <h3 className="text-xs font-bold text-gray-600 uppercase tracking-wide mb-3 px-3">
-                Cuenta
-              </h3>
-              <ul className="space-y-1">
-                <li>
-                  <Link
-                    to="/profile"
-                    className="block px-3 py-2 text-sm font-medium text-foreground hover:bg-gray-100 rounded-sm"
-                  >
-                    👤 Perfil
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </aside>
+        <Sidebar />
 
         {/* Main Content */}
         <main className="flex-1 bg-gray-50">
           <div className="p-6">
             <div className="max-w-7xl mx-auto">
               <div className="mb-8">
-                <h1 className="text-2xl font-bold text-foreground mb-2">Cursos de Educación Financiera</h1>
-                <p className="text-gray-600">Aprende a gestionar tu dinero con nuestros cursos especializados</p>
+                <h1 className="text-2xl font-bold text-foreground mb-2">
+                  Cursos de Educación Financiera
+                </h1>
+                <p className="text-gray-600">
+                  Aprende a gestionar tu dinero con nuestros cursos
+                  especializados
+                </p>
               </div>
 
               {/* Filter Tabs */}
@@ -161,20 +85,33 @@ export default function Courses() {
               {/* Courses Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {courses.map((course, idx) => (
-                  <div key={idx} className="bg-white border border-gray-200 hover:border-slate-600 hover:shadow-sm transition">
+                  <div
+                    key={idx}
+                    className="bg-white border border-gray-200 hover:border-slate-600 hover:shadow-sm transition"
+                  >
                     <div className="p-5">
                       <div className="flex items-start justify-between mb-3">
-                        <h3 className="text-sm font-bold text-foreground flex-1">{course.title}</h3>
-                        <span className="text-xl ml-2">{idx % 3 === 0 ? "📖" : idx % 3 === 1 ? "💰" : "📊"}</span>
+                        <h3 className="text-sm font-bold text-foreground flex-1">
+                          {course.title}
+                        </h3>
+                        <span className="text-xl ml-2">
+                          {idx % 3 === 0 ? "📖" : idx % 3 === 1 ? "💰" : "📊"}
+                        </span>
                       </div>
-                      
-                      <p className="text-xs text-gray-600 mb-4">{course.description}</p>
-                      
+
+                      <p className="text-xs text-gray-600 mb-4">
+                        {course.description}
+                      </p>
+
                       <div className="space-y-3 mb-4">
                         <div>
                           <div className="flex justify-between items-center mb-1">
-                            <span className="text-xs text-gray-600">Progreso</span>
-                            <span className="text-xs font-bold text-foreground">{course.progress}%</span>
+                            <span className="text-xs text-gray-600">
+                              Progreso
+                            </span>
+                            <span className="text-xs font-bold text-foreground">
+                              {course.progress}%
+                            </span>
                           </div>
                           <div className="w-full h-2 bg-gray-200">
                             <div
@@ -183,15 +120,19 @@ export default function Courses() {
                             />
                           </div>
                         </div>
-                        
+
                         <div className="flex justify-between text-xs text-gray-600">
                           <span>📚 {course.lessons} lecciones</span>
                           <span>👨‍🏫 {course.instructor}</span>
                         </div>
                       </div>
-                      
+
                       <button className="w-full bg-slate-600 text-white py-2 text-sm font-medium hover:bg-blue-900 transition">
-                        {course.progress === 100 ? "Recertificar" : course.progress > 0 ? "Continuar" : "Empezar"}
+                        {course.progress === 100
+                          ? "Recertificar"
+                          : course.progress > 0
+                            ? "Continuar"
+                            : "Empezar"}
                       </button>
                     </div>
                   </div>
@@ -200,7 +141,9 @@ export default function Courses() {
 
               {/* Coming Soon */}
               <div className="mt-12 bg-white border border-gray-200 p-8 text-center">
-                <p className="text-gray-600 mb-4">¿Quieres sugerir un nuevo curso?</p>
+                <p className="text-gray-600 mb-4">
+                  ¿Quieres sugerir un nuevo curso?
+                </p>
                 <button className="bg-slate-600 text-white px-6 py-2 text-sm font-medium hover:bg-blue-900 transition">
                   Sugerir Curso
                 </button>
