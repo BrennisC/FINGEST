@@ -180,7 +180,8 @@ export default function Profile() {
                       </select>
                     </div>
                     <p className="text-sm text-gray-600">
-                      Esto nos ayuda a personalizar contenido y recomendaciones para ti.
+                      Esto nos ayuda a personalizar contenido y recomendaciones
+                      para ti.
                     </p>
                   </div>
                 </div>
@@ -211,7 +212,8 @@ export default function Profile() {
 
                   <div className="space-y-4">
                     <p className="text-sm text-gray-600 mb-4">
-                      Cambia tu contraseña regularmente para mantener tu cuenta segura.
+                      Cambia tu contraseña regularmente para mantener tu cuenta
+                      segura.
                     </p>
 
                     <div>
@@ -285,7 +287,8 @@ export default function Profile() {
                           Seguridad mejorada
                         </p>
                         <p className="text-sm text-blue-800 mt-1">
-                          La autenticación de dos factores agrega una capa adicional de seguridad a tu cuenta.
+                          La autenticación de dos factores agrega una capa
+                          adicional de seguridad a tu cuenta.
                         </p>
                       </div>
                     </div>
@@ -364,11 +367,13 @@ export default function Profile() {
                     {[
                       {
                         title: "Notificaciones por email",
-                        description: "Recibe actualizaciones importantes en tu correo",
+                        description:
+                          "Recibe actualizaciones importantes en tu correo",
                       },
                       {
                         title: "Alertas de seguridad",
-                        description: "Ten conocimiento de actividad inusual en tu cuenta",
+                        description:
+                          "Ten conocimiento de actividad inusual en tu cuenta",
                       },
                       {
                         title: "Ofertas y promociones",
