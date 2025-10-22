@@ -1,6 +1,14 @@
 import { Link } from "react-router-dom";
-import Icon from "@mui/material/Icon";
-import { User } from "lucide-react";
+import {
+  BarChart3,
+  ArrowRightLeft,
+  Wallet,
+  Bell,
+  BookOpen,
+  Lightbulb,
+  User,
+  LogOut,
+} from "lucide-react";
 export default function Dashboard() {
   return (
     <div className="min-h-screen bg-gray-50">
@@ -25,33 +33,37 @@ export default function Dashboard() {
                 <li>
                   <Link
                     to="/dashboard"
-                    className="block px-3 py-2 rounded-sm text-sm font-medium text-white bg-slate-600"
+                    className="block px-3 py-2 rounded-sm text-sm font-medium text-white bg-slate-600 flex items-center gap-2"
                   >
-                    📊Panel Principal
+                    <BarChart3 size={18} />
+                    Panel Principal
                   </Link>
                 </li>
                 <li>
                   <Link
                     to="/transactions"
-                    className="block px-3 py-2 rounded-sm text-sm font-medium text-foreground hover:bg-gray-100"
+                    className="block px-3 py-2 rounded-sm text-sm font-medium text-foreground hover:bg-gray-100 flex items-center gap-2"
                   >
-                    🔄 Transacciones
+                    <ArrowRightLeft size={18} />
+                    Transacciones
                   </Link>
                 </li>
                 <li>
                   <Link
                     to="/subcuentas"
-                    className="block px-3 py-2 rounded-sm text-sm font-medium text-foreground hover:bg-gray-100"
+                    className="block px-3 py-2 rounded-sm text-sm font-medium text-foreground hover:bg-gray-100 flex items-center gap-2"
                   >
-                    💰 Subcuentas
+                    <Wallet size={18} />
+                    Subcuentas
                   </Link>
                 </li>
                 <li>
                   <Link
                     to="/alerts"
-                    className="block px-3 py-2 rounded-sm text-sm font-medium text-foreground hover:bg-gray-100"
+                    className="block px-3 py-2 rounded-sm text-sm font-medium text-foreground hover:bg-gray-100 flex items-center gap-2"
                   >
-                    🔔 Alertas
+                    <Bell size={18} />
+                    Alertas
                   </Link>
                 </li>
               </ul>
@@ -65,17 +77,19 @@ export default function Dashboard() {
                 <li>
                   <Link
                     to="/courses"
-                    className="block px-3 py-2 rounded-sm text-sm font-medium text-foreground hover:bg-gray-100"
+                    className="block px-3 py-2 rounded-sm text-sm font-medium text-foreground hover:bg-gray-100 flex items-center gap-2"
                   >
-                    📚 Cursos
+                    <BookOpen size={18} />
+                    Cursos
                   </Link>
                 </li>
                 <li>
                   <Link
                     to="/financial-advice"
-                    className="block px-3 py-2 rounded-sm text-sm font-medium text-foreground hover:bg-gray-100"
+                    className="block px-3 py-2 rounded-sm text-sm font-medium text-foreground hover:bg-gray-100 flex items-center gap-2"
                   >
-                    💡 Consejos Financieros
+                    <Lightbulb size={18} />
+                    Consejos Financieros
                   </Link>
                 </li>
               </ul>
@@ -89,10 +103,23 @@ export default function Dashboard() {
                 <li>
                   <Link
                     to="/profile"
-                    className="block px-3 py-2 rounded-sm text-sm font-medium text-foreground hover:bg-gray-100"
+                    className="block px-3 py-2 rounded-sm text-sm font-medium text-foreground hover:bg-gray-100 flex items-center gap-2"
                   >
-                    <Icon name="user" /> Perfil
+                    <User size={18} />
+                    Perfil
                   </Link>
+                </li>
+                <li>
+                  <button
+                    onClick={() => {
+                      // TODO: Implement logout functionality
+                      alert("Logout functionality to be implemented");
+                    }}
+                    className="w-full text-left px-3 py-2 rounded-sm text-sm font-medium text-foreground hover:bg-gray-100 flex items-center gap-2 mt-8 pt-8 border-t border-gray-200"
+                  >
+                    <LogOut size={18} />
+                    Salir
+                  </button>
                 </li>
               </ul>
             </div>
