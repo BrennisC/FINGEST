@@ -1,100 +1,10 @@
-import { Link } from "react-router-dom";
+import Sidebar from "@/components/Sidebar";
 
 export default function Transactions() {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="flex">
-        {/* Sidebar */}
-        <aside className="w-64 bg-white border-r border-gray-200 min-h-screen p-6">
-          <Link to="/" className="flex items-center gap-2 font-bold text-xl text-foreground mb-8">
-            <div className="w-8 h-8 bg-slate-600 rounded-sm flex items-center justify-center text-white text-sm">
-              💚
-            </div>
-            <span>FinGest</span>
-          </Link>
-
-          <nav className="space-y-1">
-            <div>
-              <h3 className="text-xs font-bold text-gray-600 uppercase tracking-wide mb-3 px-3">
-                Visión General
-              </h3>
-              <ul className="space-y-1">
-                <li>
-                  <Link
-                    to="/dashboard"
-                    className="block px-3 py-2 rounded-sm text-sm font-medium text-foreground hover:bg-gray-100"
-                  >
-                    📊 Panel Principal
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/transactions"
-                    className="block px-3 py-2 rounded-sm text-sm font-medium text-white bg-slate-600"
-                  >
-                    🔄 Transacciones
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/subcuentas"
-                    className="block px-3 py-2 rounded-sm text-sm font-medium text-foreground hover:bg-gray-100"
-                  >
-                    <p>💰 Subcuentas</p>
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/alerts"
-                    className="block px-3 py-2 rounded-sm text-sm font-medium text-foreground hover:bg-gray-100"
-                  >
-                    🔔 Alertas
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            <div className="mt-8">
-              <h3 className="text-xs font-bold text-gray-600 uppercase tracking-wide mb-3 px-3">
-                Aprendizaje
-              </h3>
-              <ul className="space-y-1">
-                <li>
-                  <Link
-                    to="/courses"
-                    className="block px-3 py-2 rounded-sm text-sm font-medium text-foreground hover:bg-gray-100"
-                  >
-                    📚 Cursos
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/financial-advice"
-                    className="block px-3 py-2 rounded-sm text-sm font-medium text-foreground hover:bg-gray-100"
-                  >
-                    💡 Consejos Financieros
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            <div className="mt-8">
-              <h3 className="text-xs font-bold text-gray-600 uppercase tracking-wide mb-3 px-3">
-                Cuenta
-              </h3>
-              <ul className="space-y-1">
-                <li>
-                  <Link
-                    to="/profile"
-                    className="block px-3 py-2 rounded-sm text-sm font-medium text-foreground hover:bg-gray-100"
-                  >
-                    👤 Perfil
-                  </Link>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </aside>
+        <Sidebar />
 
         {/* Main Content */}
         <main className="flex-1 p-6">
