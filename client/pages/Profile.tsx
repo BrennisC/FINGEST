@@ -1,16 +1,55 @@
-import { useState } from "react";
 import Sidebar from "@/components/Sidebar";
-import { Lock, Bell, Shield, Eye, EyeOff, AlertCircle } from "lucide-react";
+import TourButton from "@/components/TourButton";
+import { useTourContext } from "@/context/TourContext";
+import useTour from "@/hooks/useTour";
+import { profileTourSteps } from "@/lib/tours";
+import { AlertCircle, Bell, Eye, EyeOff, Lock, Shield } from "lucide-react";
+import React, { useEffect, useState } from "react";
+
+interface User {
+  fullName: string;
+  email: string;
+  password: string;
+}
 
 export default function Profile() {
   const [activeTab, setActiveTab] = useState("general");
   const [showPassword, setShowPassword] = useState(false);
+  const { hasSeenTour, markTourAsSeen } = useTourContext();
+  const pageName = "profile";
+  const [tourInitiated, setTourInitiated] = useState(false);
+  const tourAttemptedRef = React.useRef(false);
+
+  const handleTourClose = React.useCallback(() => {
+    markTourAsSeen(pageName);
+  }, [markTourAsSeen, pageName]);
+
+  const { startTour, closeTour, isOpen } = useTour({
+    steps: profileTourSteps,
+    onClose: handleTourClose,
+  });
+
+  // Start tour automatically on first visit - with ref to avoid dependency cycle
+  useEffect(() => {
+    if (!hasSeenTour[pageName] && !tourInitiated && !tourAttemptedRef.current) {
+      tourAttemptedRef.current = true;
+      setTourInitiated(true);
+
+      const timer = setTimeout(() => {
+        startTour();
+      }, 1000);
+
+      return () => clearTimeout(timer);
+    }
+  }, []);
 
   const tabs = [
     { id: "general", label: "General", icon: null },
     { id: "security", label: "Seguridad", icon: Shield },
     { id: "notifications", label: "Notificaciones", icon: Bell },
   ];
+
+  const user: User = JSON.parse(localStorage.getItem("user") || "{}");
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -19,7 +58,7 @@ export default function Profile() {
 
         <main className="flex-1">
           {/* Header Section */}
-          <div className="bg-white border-b border-gray-200">
+          <div className="bg-white border-b border-gray-200 profile-header">
             <div className="max-w-4xl mx-auto px-8 py-8">
               <div className="flex items-center gap-6">
                 <div className="w-24 h-24 bg-gradient-to-br from-slate-600 to-slate-700 flex items-center justify-center text-5xl rounded-lg shadow-sm">
@@ -33,12 +72,13 @@ export default function Profile() {
                     Administra tu cuenta y preferencias
                   </p>
                 </div>
+                <TourButton onClick={startTour} />
               </div>
             </div>
           </div>
 
           {/* Tab Navigation */}
-          <div className="bg-white border-b border-gray-200">
+          <div className="bg-white border-b border-gray-200 profile-tabs">
             <div className="max-w-4xl mx-auto px-8">
               <div className="flex gap-1">
                 {tabs.map((tab) => {
@@ -48,11 +88,10 @@ export default function Profile() {
                     <button
                       key={tab.id}
                       onClick={() => setActiveTab(tab.id)}
-                      className={`flex items-center gap-2 px-5 py-4 font-medium text-sm border-b-2 transition-colors ${
-                        isActive
+                      className={`flex items-center gap-2 px-5 py-4 font-medium text-sm border-b-2 transition-colors ${isActive
                           ? "border-slate-600 text-foreground"
                           : "border-transparent text-gray-600 hover:text-foreground"
-                      }`}
+                        }`}
                     >
                       {Icon && <Icon className="w-4 h-4" />}
                       {tab.label}
@@ -67,7 +106,7 @@ export default function Profile() {
           <div className="max-w-4xl mx-auto px-8 py-8">
             {/* General Tab */}
             {activeTab === "general" && (
-              <div className="space-y-6">
+              <div className="space-y-6 profile-general">
                 {/* User Profile Card */}
                 <div className="bg-white rounded-lg border border-gray-200 p-6 shadow-sm">
                   <div className="flex items-center justify-between mb-6">
@@ -129,7 +168,7 @@ export default function Profile() {
                       </label>
                       <input
                         type="email"
-                        defaultValue="evaristo108@gmail.com"
+                        defaultValue={user.email}
                         className="w-full px-4 py-2.5 border border-gray-200 text-foreground bg-white focus:outline-none focus:ring-2 focus:ring-slate-600 focus:border-transparent rounded-lg"
                       />
                     </div>
@@ -200,7 +239,7 @@ export default function Profile() {
 
             {/* Security Tab */}
             {activeTab === "security" && (
-              <div className="space-y-6">
+              <div className="space-y-6 profile-security">
                 {/* Password Section */}
                 <div className="bg-white rounded-lg border border-gray-200 p-6 shadow-sm">
                   <div className="flex items-center gap-3 mb-6">

@@ -1,6 +1,39 @@
 import Sidebar from "@/components/Sidebar";
+import TourButton from "@/components/TourButton";
+import { useTourContext } from "@/context/TourContext";
+import useTour from "@/hooks/useTour";
+import { dashboardTourSteps } from "@/lib/tours";
+import React, { useEffect, useState } from "react";
 
 export default function Dashboard() {
+  const { hasSeenTour, markTourAsSeen } = useTourContext();
+  const pageName = "dashboard";
+  const [tourInitiated, setTourInitiated] = useState(false);
+  const tourAttemptedRef = React.useRef(false);
+
+  const handleTourClose = React.useCallback(() => {
+    markTourAsSeen(pageName);
+  }, [markTourAsSeen, pageName]);
+
+  const { startTour, closeTour, isOpen } = useTour({
+    steps: dashboardTourSteps,
+    onClose: handleTourClose,
+  });
+
+  // Start tour automatically on first visit - with ref to avoid dependency cycle
+  useEffect(() => {
+    if (!hasSeenTour[pageName] && !tourInitiated && !tourAttemptedRef.current) {
+      tourAttemptedRef.current = true;
+      setTourInitiated(true);
+
+      const timer = setTimeout(() => {
+        startTour();
+      }, 1000);
+
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="flex">
@@ -9,15 +42,20 @@ export default function Dashboard() {
         {/* Main Content */}
         <main className="flex-1 p-6">
           <div className="max-w-7xl">
-            <h1 className="text-2xl font-bold text-foreground mb-1">
-              Dashboard
-            </h1>
-            <p className="text-gray-600 mb-8">
-              Descripción general de tu situación financiera
-            </p>
+            <div className="flex justify-between items-start mb-8">
+              <div className="dashboard-heading">
+                <h1 className="text-2xl font-bold text-foreground mb-1">
+                  Dashboard
+                </h1>
+                <p className="text-gray-600">
+                  Descripción general de tu situación financiera
+                </p>
+              </div>
+              <TourButton onClick={startTour} />
+            </div>
 
             {/* Tabs */}
-            <div className="flex gap-8 mb-6 border-b border-gray-200">
+            <div className="flex gap-8 mb-6 border-b border-gray-200 dashboard-tabs">
               <button className="px-4 py-2 text-sm font-medium text-slate-600 border-b-2 border-slate-600">
                 Overview
               </button>
@@ -30,7 +68,7 @@ export default function Dashboard() {
             </div>
 
             {/* Stats Cards */}
-            <div className="grid grid-cols-4 gap-4 mb-6">
+            <div className="grid grid-cols-4 gap-4 mb-6 dashboard-stats">
               <div className="bg-white border border-gray-200 p-5">
                 <p className="text-xs text-gray-600 mb-2">Total Balance</p>
                 <p className="text-xl font-bold text-foreground">$1490.00</p>
@@ -61,7 +99,7 @@ export default function Dashboard() {
 
             {/* Charts Section */}
             <div className="grid grid-cols-2 gap-6">
-              <div className="bg-white border border-gray-200 p-6">
+              <div className="bg-white border border-gray-200 p-6 dashboard-transactions">
                 <h2 className="text-sm font-bold text-foreground mb-4">
                   Recent Transactions
                 </h2>
@@ -120,7 +158,7 @@ export default function Dashboard() {
                 </div>
               </div>
 
-              <div className="bg-white border border-gray-200 p-6">
+              <div className="bg-white border border-gray-200 p-6 dashboard-alerts">
                 <h2 className="text-sm font-bold text-foreground mb-4">
                   Alerts & Reminders
                 </h2>

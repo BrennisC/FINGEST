@@ -1,4 +1,9 @@
-import Header from "@/components/Header";
+import Hero from "@/components/Hero";
+import TourButton from "@/components/TourButton";
+import { useTourContext } from "@/context/TourContext";
+import useTour from "@/hooks/useTour";
+import { indexTourSteps } from "@/lib/tours";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Layout from "./Layout";
 
@@ -19,26 +24,49 @@ const FeatureCard = ({
 );
 
 export default function Index() {
+  const { hasSeenTour, markTourAsSeen } = useTourContext();
+  const pageName = "index";
+  const [tourInitiated, setTourInitiated] = useState(false);
+  const tourAttemptedRef = React.useRef(false);
+
+  // Stable onClose so the useTour hook doesn't receive a new function every render
+  const handleTourClose = React.useCallback(() => {
+    markTourAsSeen(pageName);
+  }, [markTourAsSeen, pageName]);
+
+  const { startTour, closeTour, isOpen } = useTour({
+    steps: indexTourSteps,
+    onClose: handleTourClose,
+  });
+
+  // Start tour automatically on first visit - with ref to avoid dependency cycle
+  useEffect(() => {
+    if (!hasSeenTour[pageName] && !tourInitiated && !tourAttemptedRef.current) {
+      tourAttemptedRef.current = true;
+      setTourInitiated(true);
+
+      const timer = setTimeout(() => {
+        startTour();
+      }, 1000);
+
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
   return (
     <Layout>
+      {/* Tour Button */}
+      <div className="fixed top-20 right-4 z-50">
+        <TourButton onClick={startTour} />
+      </div>
+
       {/* Hero Section */}
-      <section className="bg-white py-20 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-5xl font-bold text-slate-600 mb-6 leading-tight">
-            Simplificamos tus finanzas
-            <br />
-            personales
-          </h1>
-          <p className="text-base text-gray-600 mb-12 max-w-2xl mx-auto">
-            Somos expertos en tecnología financiera comprometidos con
-            democratizar el acceso a herramientas profesionales de gestión
-            financiera.
-          </p>
-        </div>
-      </section>
+      <div className="hero-section">
+        <Hero />
+      </div>
 
       {/* Features Section */}
-      <section className="bg-gray-50 py-20 px-4">
+      <section className="features-section bg-gray-50 py-20 px-4">
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-3 gap-6">
             <FeatureCard
@@ -61,7 +89,7 @@ export default function Index() {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-white py-16 px-4">
+      <section className="cta-section bg-white py-16 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-gray-600 mb-8">
             *Nuestra misión es empoderara las personas con las herramientas

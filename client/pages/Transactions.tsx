@@ -1,6 +1,38 @@
 import Sidebar from "@/components/Sidebar";
+import TourButton from "@/components/TourButton";
+import { useTourContext } from "@/context/TourContext";
+import useTour from "@/hooks/useTour";
+import { transactionsTourSteps } from "@/lib/tours";
+import React, { useEffect, useState } from "react";
 
 export default function Transactions() {
+  const { hasSeenTour, markTourAsSeen } = useTourContext();
+  const pageName = "transactions";
+  const [tourInitiated, setTourInitiated] = useState(false);
+  const tourAttemptedRef = React.useRef(false);
+
+  const handleTourClose = React.useCallback(() => {
+    markTourAsSeen(pageName);
+  }, [markTourAsSeen, pageName]);
+
+  const { startTour, closeTour, isOpen } = useTour({
+    steps: transactionsTourSteps,
+    onClose: handleTourClose,
+  });
+
+  // Start tour automatically on first visit - with ref to avoid dependency cycle
+  useEffect(() => {
+    if (!hasSeenTour[pageName] && !tourInitiated && !tourAttemptedRef.current) {
+      tourAttemptedRef.current = true;
+      setTourInitiated(true);
+
+      const timer = setTimeout(() => {
+        startTour();
+      }, 1000);
+
+      return () => clearTimeout(timer);
+    }
+  }, []);
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="flex">
@@ -9,7 +41,7 @@ export default function Transactions() {
         {/* Main Content */}
         <main className="flex-1 p-6">
           <div className="max-w-7xl">
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center justify-between mb-6 transactions-header">
               <div>
                 <h1 className="text-2xl font-bold text-foreground mb-1">
                   Transacciones
@@ -18,13 +50,16 @@ export default function Transactions() {
                   Administre y rastree sus ingresos y gastos
                 </p>
               </div>
-              <button className="bg-slate-600 text-white px-4 py-2 text-sm font-medium hover:bg-blue-900 transition rounded-sm">
-                + Añadir Transacción
-              </button>
+              <div className="flex items-center gap-3">
+                <TourButton onClick={startTour} />
+                <button className="bg-slate-600 text-white px-4 py-2 text-sm font-medium hover:bg-blue-900 transition rounded-sm add-transaction-btn">
+                  + Añadir Transacción
+                </button>
+              </div>
             </div>
 
             {/* Filters */}
-            <div className="flex gap-3 mb-6 items-center">
+            <div className="flex gap-3 mb-6 items-center transactions-filters">
               <button className="px-4 py-2 bg-slate-600 text-white text-sm font-medium rounded-sm">
                 Todos
               </button>
@@ -49,7 +84,7 @@ export default function Transactions() {
             </div>
 
             {/* Transactions Table */}
-            <div className="bg-white border border-gray-200">
+            <div className="bg-white border border-gray-200 transactions-table">
               <table className="w-full">
                 <tbody className="divide-y divide-gray-200">
                   {[

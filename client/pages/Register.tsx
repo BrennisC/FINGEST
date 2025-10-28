@@ -46,6 +46,14 @@ export default function Register() {
     // TODO: Implement real registration with backend
     setError("");
     navigate("/dashboard");
+    localStorage.setItem(
+      "user",
+      JSON.stringify({
+        fullName: formData.fullName,
+        email: formData.email,
+        password: formData.password,
+      }),
+    );
   };
 
   return (
