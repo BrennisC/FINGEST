@@ -75,7 +75,7 @@ export default function Transactions() {
                 placeholder="Buscar transacciones..."
                 className="px-4 py-2 bg-white border border-gray-200 text-sm rounded-sm focus:outline-none focus:border-slate-600"
               />
-              <button className="px-4 py-2 bg-white text-foreground border border-gray-200 text-sm font-medium hover:border-slate-600 rounded-sm">
+              <button className="px-4 py-2 bg-white text-foreground border border-gray-200 text-sm font-medium hover:border-slate-600 rounded-sm transaction-sorting">
                 Más recientes ↓
               </button>
               <button className="px-4 py-2 bg-slate-600 text-white text-sm font-medium hover:bg-blue-900 transition rounded-sm">

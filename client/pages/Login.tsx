@@ -1,8 +1,19 @@
 import TourButton from "@/components/TourButton";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
 import { useTourContext } from "@/context/TourContext";
 import useTour from "@/hooks/useTour";
+import { cn } from "@/lib/utils";
 import { loginTourSteps } from "@/lib/tours";
-import { Lock, Mail } from "lucide-react";
+import { ArrowLeft, Lock, Mail } from "lucide-react";
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -37,7 +48,7 @@ export default function Login() {
 
       return () => clearTimeout(timer);
     }
-  }, []);
+  }, [hasSeenTour, pageName, startTour, tourInitiated]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -50,118 +61,164 @@ export default function Login() {
     // TODO: Implement real authentication with backend
     setError("");
     navigate("/dashboard");
-    localStorage.setItem("user", JSON.stringify({ email, password }));
+    localStorage.setItem("user", JSON.stringify({ email }));
+  };
+
+  const handleHome = () => {
+    navigate("/");
+    localStorage.removeItem("user");
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-gray-100 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-gray-100 flex flex-col items-center justify-center p-6">
       <div className="w-full max-w-md">
         {/* Logo Section */}
         <div className="text-center mb-8 login-logo">
-          <Link to="/" className="flex items-center justify-center gap-2 mb-4">
-            <div className="w-12 h-12 bg-slate-600 rounded-sm flex items-center justify-center text-white text-lg">
+          <Link
+            to="/"
+            className="inline-flex items-center justify-center gap-2 mb-4 transition-transform hover:scale-105"
+          >
+            <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center text-primary-foreground text-lg shadow-md">
               💚
             </div>
-            <span className="text-2xl font-bold text-foreground">FinGest</span>
+            <span className="text-2xl font-bold text-primary">FinGest</span>
           </Link>
           <h1 className="text-3xl font-bold text-foreground mb-2">
             Bienvenido de vuelta
           </h1>
-          <p className="text-gray-600">
+          <p className="text-muted-foreground max-w-sm mx-auto">
             Inicia sesión en tu cuenta para acceder a tu panel
           </p>
         </div>
 
         {/* Login Form */}
-        <div className="bg-white rounded-lg shadow-md p-8 mb-4 login-form">
-          <div className="flex justify-end mb-2">
-            <TourButton onClick={startTour} size="sm" />
-          </div>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            {/* Email Field */}
-            <div className="login-email">
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-foreground mb-2"
+        <Card className="mb-6 border-0 shadow-lg login-form">
+          <CardHeader className="relative pb-2">
+            <div className="absolute right-4 top-4">
+              <TourButton onClick={startTour} size="sm" />
+            </div>
+            <CardTitle>Iniciar Sesión</CardTitle>
+            <CardDescription>
+              Introduce tus credenciales para continuar
+            </CardDescription>
+          </CardHeader>
+
+          <CardContent>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              {/* Email Field */}
+              <div className="login-email space-y-2">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-foreground"
+                >
+                  Correo Electrónico
+                </label>
+                <div className="relative">
+                  <Mail
+                    className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
+                    size={18}
+                  />
+                  <Input
+                    id="email"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="tu@email.com"
+                    className="pl-10 transition-all border-input focus-within:border-primary"
+                  />
+                </div>
+              </div>
+
+              {/* Password Field */}
+              <div className="login-password space-y-2">
+                <label
+                  htmlFor="password"
+                  className="block text-sm font-medium text-foreground"
+                >
+                  Contraseña
+                </label>
+                <div className="relative">
+                  <Lock
+                    className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
+                    size={18}
+                  />
+                  <Input
+                    id="password"
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="••••••••"
+                    className="pl-10 transition-all border-input focus-within:border-primary"
+                  />
+                </div>
+              </div>
+
+              {/* Error Message */}
+              {error && (
+                <div className="p-3 bg-destructive/10 border border-destructive/20 rounded-lg text-destructive animate-in fade-in-50">
+                  <p className="text-sm">{error}</p>
+                </div>
+              )}
+
+              {/* Submit Button */}
+              <Button
+                type="submit"
+                className="login-button w-full bg-primary hover:bg-primary/90 text-primary-foreground transition-all duration-200 mt-6"
               >
-                Correo Electrónico
-              </label>
-              <div className="relative">
-                <Mail
-                  className="absolute left-3 top-3 text-gray-400"
-                  size={20}
-                />
-                <input
-                  id="email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="tu@email.com"
-                  className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-600 focus:border-transparent"
-                />
+                Iniciar Sesión
+              </Button>
+
+              {/* Forgot Password Link */}
+              <div className="text-center pt-1">
+                <Button
+                  variant="link"
+                  className="text-sm text-primary hover:text-primary/80 p-0 h-auto"
+                >
+                  ¿Olvidaste tu contraseña?
+                </Button>
+              </div>
+            </form>
+          </CardContent>
+
+          <CardFooter className="flex flex-col space-y-4 pt-0">
+            <div className="relative w-full py-2">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-muted"></div>
+              </div>
+              <div className="relative flex justify-center">
+                <span className="bg-card px-2 text-xs text-muted-foreground">
+                  O
+                </span>
               </div>
             </div>
 
-            {/* Password Field */}
-            <div className="login-password">
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium text-foreground mb-2"
+            <div className="text-center w-full login-register">
+              <p className="text-muted-foreground text-sm mb-3">
+                ¿No tienes cuenta?{" "}
+                <Link
+                  to="/register"
+                  className="text-primary font-medium hover:text-primary/80 transition-colors"
+                >
+                  Regístrate aquí
+                </Link>
+              </p>
+
+              <Button
+                variant="outline"
+                onClick={handleHome}
+                className="w-full flex items-center justify-center gap-2 transition-all"
               >
-                Contraseña
-              </label>
-              <div className="relative">
-                <Lock
-                  className="absolute left-3 top-3 text-gray-400"
-                  size={20}
-                />
-                <input
-                  id="password"
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="••••••••"
-                  className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-600 focus:border-transparent"
-                />
-              </div>
+                <ArrowLeft size={16} />
+                Volver a inicio
+              </Button>
             </div>
+          </CardFooter>
+        </Card>
+      </div>
 
-            {/* Error Message */}
-            {error && (
-              <div className="p-3 bg-red-50 border border-red-200 rounded-lg">
-                <p className="text-sm text-red-700">{error}</p>
-              </div>
-            )}
-
-            {/* Submit Button */}
-            <button
-              type="submit"
-              className="login-button w-full bg-slate-600 text-white py-2 rounded-lg font-medium hover:bg-blue-900 transition mt-6"
-            >
-              Iniciar Sesión
-            </button>
-          </form>
-
-          {/* Forgot Password Link */}
-          <div className="text-center mt-4">
-            <button className="text-sm text-slate-600 hover:text-blue-900">
-              ¿Olvidaste tu contraseña?
-            </button>
-          </div>
-        </div>
-
-        {/* Sign Up Link */}
-        <div className="text-center login-register">
-          <p className="text-gray-600 text-sm">
-            ¿No tienes cuenta?{" "}
-            <Link
-              to="/register"
-              className="text-slate-600 font-medium hover:text-blue-900"
-            >
-              Regístrate aquí
-            </Link>
-          </p>
-        </div>
+      {/* Footer */}
+      <div className="mt-6 text-center text-xs text-muted-foreground">
+        © {new Date().getFullYear()} FinGest. Todos los derechos reservados.
       </div>
     </div>
   );

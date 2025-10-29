@@ -1,14 +1,53 @@
 import { Link } from "react-router-dom";
+import { useTourContext } from "@/context/TourContext";
+import useTour from "@/hooks/useTour";
+import { HeaderTourSteps } from "@/lib/tours";
+import { useCallback, useEffect, useRef, useState } from "react";
+import TourButton from "./TourButton";
+import { cn } from "@/lib/utils";
 
-export default function Header() {
+interface HeaderProps {
+  className?: string;
+}
+
+export default function Header({ className }: HeaderProps = {}) {
+  const { hasSeenTour, markTourAsSeen } = useTourContext();
+  const pageName = "header";
+  const [tourInitiated, setTourInitiated] = useState(false);
+  const tourAttemptedRef = useRef(false);
+
+  const handleTourClose = useCallback(() => {
+    markTourAsSeen(pageName);
+  }, [markTourAsSeen, pageName]);
+
+  const { startTour, closeTour, isOpen } = useTour({
+    steps: HeaderTourSteps,
+    onClose: handleTourClose,
+  });
+
+  useEffect(() => {
+    if (!hasSeenTour[pageName] && !tourInitiated && !tourAttemptedRef.current) {
+      tourAttemptedRef.current = true;
+      setTourInitiated(true);
+
+      const timer = setTimeout(() => {
+        startTour();
+      }, 1000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [hasSeenTour, pageName, startTour, tourInitiated]);
+
   return (
-    <header className="bg-white border-b border-gray-200">
+    <header
+      className={cn("bg-white border-b border-gray-200 header", className)}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link
             to="/"
-            className="flex items-center gap-2 font-bold text-xl text-foreground"
+            className="flex items-center gap-2 font-bold text-xl text-foreground header-logo"
           >
             <div className="w-8 h-8 bg-slate-600 rounded-sm flex items-center justify-center text-white text-sm">
               💚
@@ -17,7 +56,7 @@ export default function Header() {
           </Link>
 
           {/* Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-8 header-nav">
             <Link
               to="/"
               className="text-foreground hover:text-slate-600 text-sm font-medium transition"
@@ -45,7 +84,7 @@ export default function Header() {
           </nav>
 
           {/* Right side buttons */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-4 header-user">
             <Link
               to="/login"
               className="text-foreground hover:text-slate-600 text-sm font-medium transition"
@@ -58,6 +97,10 @@ export default function Header() {
             >
               Comenzar gratis
             </Link>
+
+            <div className="fixed top-20 right-4 z-50 border-b-slate-400 text-black">
+              <TourButton onClick={startTour} />
+            </div>
           </div>
         </div>
       </div>

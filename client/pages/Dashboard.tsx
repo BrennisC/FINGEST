@@ -41,7 +41,7 @@ export default function Dashboard() {
 
         {/* Main Content */}
         <main className="flex-1 p-6">
-          <div className="max-w-7xl">
+          <div className="max-w-7xl dashboard-layout">
             <div className="flex justify-between items-start mb-8">
               <div className="dashboard-heading">
                 <h1 className="text-2xl font-bold text-foreground mb-1">

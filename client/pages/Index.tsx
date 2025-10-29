@@ -4,8 +4,10 @@ import { useTourContext } from "@/context/TourContext";
 import useTour from "@/hooks/useTour";
 import { indexTourSteps } from "@/lib/tours";
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import Layout from "./Layout";
+import { Link, useNavigation } from "react-router-dom";
+import Layout from "@/layout/layout";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const FeatureCard = ({
   icon,
@@ -59,6 +61,7 @@ export default function Index() {
       <div className="fixed top-20 right-4 z-50">
         <TourButton onClick={startTour} />
       </div>
+      <Header className="navigation-menu" />
 
       {/* Hero Section */}
       <div className="hero-section">
@@ -68,22 +71,24 @@ export default function Index() {
       {/* Features Section */}
       <section className="features-section bg-gray-50 py-20 px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-6">
-            <FeatureCard
-              icon="🧠"
-              title="Inteligencia Artificial"
-              description="Algoritmos avanzados para análisis predictivo y recomendaciones personalizadas"
-            />
-            <FeatureCard
-              icon="👥"
-              title="Equipo Experto"
-              description="Profesionales en finanzas y tecnología trabajando para tu éxito financiero"
-            />
-            <FeatureCard
-              icon="❤️"
-              title="Pasión por Ayudar"
-              description="Cada funcionalidad está diseñado pensando en mejorar tu bienestar financiero"
-            />
+          <div className="features-cards">
+            <div className="grid md:grid-cols-3 gap-6">
+              <FeatureCard
+                icon="🧠"
+                title="Inteligencia Artificial"
+                description="Algoritmos avanzados para análisis predictivo y recomendaciones personalizadas"
+              />
+              <FeatureCard
+                icon="👥"
+                title="Equipo Experto"
+                description="Profesionales en finanzas y tecnología trabajando para tu éxito financiero"
+              />
+              <FeatureCard
+                icon="❤️"
+                title="Pasión por Ayudar"
+                description="Cada funcionalidad está diseñado pensando en mejorar tu bienestar financiero"
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -92,7 +97,7 @@ export default function Index() {
       <section className="cta-section bg-white py-16 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <p className="text-gray-600 mb-8">
-            *Nuestra misión es empoderara las personas con las herramientas
+            Nuestra misión es empoderara las personas con las herramientas
             financieras que necesitan para prosperar
           </p>
           <Link
@@ -103,6 +108,8 @@ export default function Index() {
           </Link>
         </div>
       </section>
+
+      <Footer />
     </Layout>
   );
 }
